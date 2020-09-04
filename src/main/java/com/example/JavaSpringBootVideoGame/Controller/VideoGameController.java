@@ -20,8 +20,8 @@ public class VideoGameController {
         return videoGameService.findAll();
     }
 
-    @GetMapping("/findbyId/")
-    public VideoGame findbyId(@PathVariable("{id}") Integer id){
+    @GetMapping("/findbyId/{id}")
+    public VideoGame findbyId(@PathVariable("id") Integer id){
         return videoGameService.findbyId(id);
     }
 
@@ -30,13 +30,13 @@ public class VideoGameController {
         return videoGameService.insert(videoGame);
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@RequestBody VideoGame videoGame,@PathVariable("{id}") Integer id){
+    @PutMapping("/update/{id}")
+    public String update(@RequestBody VideoGame videoGame,@PathVariable("id") Integer id){
         return  videoGameService.update(videoGame,id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("{id}") Integer  id){
+    public String delete(@PathVariable("id") Integer  id){
         return videoGameService.delete(id);
     }
 

@@ -44,7 +44,6 @@ public class VideoGameRepository {
     @Transactional
     public String delete(Integer id){
         VideoGame videoGame = entityManager.find(VideoGame.class,id);
-        entityManager.remove(videoGame);
         if(videoGame==null){
             return "Not found id";
         }
