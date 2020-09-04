@@ -1,27 +1,26 @@
 package com.example.JavaSpringBootVideoGame.Dao;
 
 import com.example.JavaSpringBootVideoGame.Model.VideoGame;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
+@Repository
 public class VideoGameRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     public List<VideoGame> findAll(){
-        Query query = entityManager.createQuery("from videogame");
+        Query query = entityManager.createQuery("from VideoGame");
         return query.getResultList();
     }
 
-    public VideoGame findbyId(String id){
+    public VideoGame findbyId(Integer id){
         return entityManager.find(VideoGame.class,id);
     }
 
@@ -31,19 +30,19 @@ public class VideoGameRepository {
         return "Insert Complete";
     }
     @Transactional
-    public String update(VideoGame videoGame,String id){
+    public String update(VideoGame videoGame,Integer  id){
         VideoGame vd = entityManager.find(VideoGame.class,id);
         if(vd==null){
             return "Not found id";
         }
         else{
             vd.setName(videoGame.getName());
-            vd.setPlatformList(videoGame.getPlatformList());
+            vd.setPlatform(videoGame.getPlatform());
             return "Update Complete";
         }
     }
     @Transactional
-    public String delete(String id){
+    public String delete(Integer id){
         VideoGame videoGame = entityManager.find(VideoGame.class,id);
         entityManager.remove(videoGame);
         if(videoGame==null){

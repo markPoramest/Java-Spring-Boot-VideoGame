@@ -1,22 +1,19 @@
 package com.example.JavaSpringBootVideoGame.Model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.List;
 
-enum Platform {PC , PS4 , Nintendo_Switch , X_Box_1}
-
+@Entity
 public class VideoGame {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private List<Platform> platformList;
+    private String platform;
 
-    public VideoGame(Integer id, String name, List<Platform> platformList) {
-        this.id = id;
-        this.name = name;
-        this.platformList = platformList;
+    public VideoGame() {
+
     }
 
     public Integer getId() {
@@ -35,11 +32,17 @@ public class VideoGame {
         this.name = name;
     }
 
-    public List<Platform> getPlatformList() {
-        return platformList;
+    public String getPlatform() {
+        return platform;
     }
 
-    public void setPlatformList(List<Platform> platformList) {
-        this.platformList = platformList;
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public VideoGame(Integer id, String name, String platform) {
+        this.id = id;
+        this.name = name;
+        this.platform = platform;
     }
 }
